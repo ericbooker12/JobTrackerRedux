@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import JobReducer from './reducer_jobs';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+	job: JobReducer
 });
 
 export default rootReducer;
