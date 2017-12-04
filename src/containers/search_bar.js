@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchWeather } from '../actions/index'
+import { fetchJobs } from '../actions/index'
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 	constructor(props){
 		super(props);
 
@@ -21,6 +21,7 @@ export default class SearchBar extends Component {
 		event.preventDefault();
 
 		// We need to go fetch job data
+		this.props.fetchJobs()
 
 		// Reset the term to empty
 		this.setState({term: ''});
@@ -42,6 +43,20 @@ export default class SearchBar extends Component {
 		)
 	}
 }
+
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({fetchJobs}, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar)
+
+
+
+
+
+
+
 
 
 
