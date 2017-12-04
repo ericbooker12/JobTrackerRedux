@@ -3,31 +3,24 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchJobs } from '../actions/index'
 
+
 class Jobs extends Component {
 	constructor(props){
 		super(props);
 
-		const jobData = this.props.fetchJobs();
+		const jobData = fetchJobs();
 
 	}
 
-	// fetchJobs(){
-	// 	// We need to go fetch job data
-	// 	this.props.fetchJobs()
-	// }
+	fetchJobs(){
+		return this.props.fetchJobs();
+	};
 
 	render() {
 		return (
-			// <table className='table table-hover'>
-			// 	<thead>
-			// 		<tr>
-			// 			<th>Job</th>
-			// 			<th>Title</th>
-			// 			<th>Company</th>
-			// 		</tr>
-			// 	</thead>
-			// </table>
-			<div>Jobs</div>
+			<div>
+				Jobs
+			</div>
 		)
 	}
 }
