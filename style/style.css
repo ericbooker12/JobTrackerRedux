@@ -13,5 +13,61 @@ svg {
 
 td:first-of-type, td:first-of-type > div {
 	/*height: 200px;*/
-	width: 100px;
+	/*width: 100px;*/
 }
+
+.job-list {
+	margin-top: 40px;
+	border-radius: 0 0px 0px 0;
+	height: 600px;
+	overflow: scroll;
+}
+
+.job-list-item:hover {
+	cursor: pointer;
+	background-color: black;
+}
+
+
+.note-content {
+	box-shadow: 1px 1px 2px #424B54;
+	padding: 10px;
+	overflow: scroll;
+	font-family: 'Arial', sans-serif;;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	height: 350px;
+	background: url(../images/vintage_paper.jpg) transparent  0px 0px;
+	border: 1px solid white;
+}
+::-webkit-scrollbar {
+	width: 0px;
+	background: transparent; /* make scrollbar transparent */
+}
+
+.job-detail {
+	padding-top: 15px;
+}
+
+#end-of-note {
+	border: 1px solid rgba(220, 220, 220, 1);
+
+}
+
+#notes-title {
+	margin-top: 0px;
+	padding-top: 0px;
+	margin-bottom: 5px;
+	padding-bottom: 20px;
+	text-decoration: underline;
+}
+
+.note-content p{
+	font-family: 'Arial', sans-serif;
+	font-size: 18px;
+	line-height: 130%;
+}
+
+
+
