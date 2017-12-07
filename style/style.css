@@ -21,6 +21,7 @@ td:first-of-type, td:first-of-type > div {
 	border-radius: 0 0px 0px 0;
 	height: 600px;
 	overflow: scroll;
+	border: 1px solid black;
 }
 
 .job-list-item:hover {

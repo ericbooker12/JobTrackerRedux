@@ -6,7 +6,6 @@ export default function(state = {}, action){
 	// fetchJob action type
 	switch(action.type) {
 		case FETCH_JOBS:
-			console.log(action.payload.data)
 			return _.mapKeys(action.payload.data, 'id');
 	}
 
