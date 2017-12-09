@@ -14,7 +14,7 @@ class JobsNew extends Component {
 				<label>{field.label}</label>
 				<input
 					className='form-control'
-					type='text'
+					type={field.type}
 					{...field.input}
 				/>
 				<div className='text-help'>
@@ -25,6 +25,7 @@ class JobsNew extends Component {
 	}
 
 	onSubmit(values){
+		console.log(values)
 		this.props.createJob(values, () => {
 			// go back to root route
 			this.props.history.push('/');
@@ -39,22 +40,49 @@ class JobsNew extends Component {
 		return(
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 				<Field
-					label='Title For Job:'
+					label='Company:'
+					name='company'
+					type='text'
+					component={this.renderField}
+				/>
+				<Field
+					label='URL:'
+					name='url'
+					type='text'
+					component={this.renderField}
+				/>
+				<Field
+					label='Job Title:'
 					name='title'
+					type='text'
 					component={this.renderField}
 				/>
 				<Field
-					label='Categories:'
-					name='categories'
+					label='Date Applied:'
+					name='date_applied'
+					type='date'
 					component={this.renderField}
 				/>
 				<Field
-					label='Content:'
-					name='content'
+					label='Resume Sent:'
+					name='resume-sent'
+					type='checkbox'
+					component={this.renderField}
+				/>
+				<Field
+					label='Cover letter sent:'
+					name='cover-letter-sent'
+					type='checkbox'
+					component={this.renderField}
+				/>
+				<Field
+					label='Not Offered:'
+					name='not-offered'
+					type='date'
 					component={this.renderField}
 				/>
 				<button type='submit' className='btn btn-primary'>Submit</button>
-				<Link to='/' className='btn btn-danger'>Cancel</Link>
+				<Link to='/' className='btn btn-primary'>Cancel</Link>
 			</form>
 		);
 	}
@@ -64,17 +92,22 @@ function validate(values) {
 	const errors = {};
 
 	// Validate the inputs from 'values'
+	if (!values.company) {
+		errors.company = "Enter a company name"
+	}
+
+	if (!values.url) {
+		errors.url = "Enter a URL for this job listing"
+	}
+
 	if (!values.title) {
-		errors.title = "Enter a title"
+		errors.title = "Enter a job title"
 	}
 
-	if (!values.categories) {
-		errors.categories = "Enter some categories"
+	if (!values.date_applied) {
+		errors.date_applied = "Enter a date"
 	}
 
-	if (!values.content) {
-		errors.content = "Enter some content"
-	}
 	// If errors is empty then the form is fine to submit
 	// If errors has any properties then redux form assumes form is invalid
 	return errors;

@@ -30,15 +30,9 @@ class JobsIndex extends Component {
 	render() {
 		console.log(this.props.jobs)
 		return (
-			<div className='col-md-6 list-group job-list'>
-
-				<div className='text-xs-right'>
-					<Link className='btn btn-primary' to='/jobs/new'>
-						New Job
-					</Link>
-				</div>
-
-				<h3>Jobs</h3>
+			<div className='col-md-6'>
+			<h3>Jobs</h3>
+			<div className='list-group job-list'>
 				<table className='table table-hover'>
 					<thead>
 						<tr className='table-row'>
@@ -49,10 +43,17 @@ class JobsIndex extends Component {
 							<th className="row-header">No. of notes</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody >
+
 						{this.renderJobs()}
 					</tbody>
 				</table>
+			</div>
+			<div className='text-xs-right'>
+				<Link className='btn btn-primary' to='/jobs/new'>
+						New Job
+				</Link>
+			</div>
 			</div>
 		)
 	}
