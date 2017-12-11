@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchJobs } from '../actions';
+import { fetchJobs, deleteJob } from '../actions';
 import { Link } from 'react-router-dom';
 import { JobShow } from './job_show';
 
@@ -9,7 +9,16 @@ import { JobShow } from './job_show';
 
 class JobsIndex extends Component {
 	componentDidMount(){
+		// console.log(this.props)
 		this.props.fetchJobs();
+	}
+
+	onDeleteClick(){
+		console.log(this);
+		// const { id } = this.props.match.params;
+		// this.props.deleteJob(id, () => {
+		// 	this.props.history.push('/');
+		// });
 	}
 
 	renderJobs(){
@@ -25,6 +34,14 @@ class JobsIndex extends Component {
 					<td>{job.company}</td>
 					<td>{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}</td>
 					<td>{job.notes.length}</td>
+					<td>
+						<button
+							className='btn-sm btn-primary'
+							onClick={this.onDeleteClick.bind(this)}
+						>Delete
+						</button>
+					</td>
+
 				</tr>
 			)
 		});
@@ -66,7 +83,7 @@ function mapStateToProps(state) {
 	return {jobs: state.jobData }
 }
 
-export default connect(mapStateToProps, { fetchJobs: fetchJobs })(JobsIndex);
+export default connect(mapStateToProps, { fetchJobs, deleteJob })(JobsIndex);
 
 
 
