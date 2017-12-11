@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchJobs } from '../actions';
 import { Link } from 'react-router-dom';
+import { JobShow } from './job_show';
 
 
 
@@ -18,7 +19,9 @@ class JobsIndex extends Component {
 			return (
 				<tr key={job.id} className='table-row job-list-item'>
 					<td>{job.id}</td>
-					<td>{job.title}</td>
+					<td>
+						<Link to={`/jobs/${job.id}`}>{job.title}</Link>
+					</td>
 					<td>{job.company}</td>
 					<td>{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}</td>
 					<td>{job.notes.length}</td>
@@ -30,7 +33,7 @@ class JobsIndex extends Component {
 	render() {
 		console.log(this.props.jobs)
 		return (
-			<div className='col-md-6'>
+			<div className='col-md-8'>
 			<h3>Jobs</h3>
 			<div className='list-group job-list'>
 				<table className='table table-hover'>

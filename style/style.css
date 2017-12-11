@@ -11,11 +11,6 @@ svg {
 	height: 150px;
 }
 
-td:first-of-type, td:first-of-type > div {
-/*	height: 200px;
-	width: 100px;*/
-}
-
 .job-list {
 	margin-top: 40px;
 	border-radius: 0 0px 0px 0;
@@ -53,7 +48,6 @@ td:first-of-type, td:first-of-type > div {
 
 #end-of-note {
 	border: 1px solid rgba(220, 220, 220, 1);
-
 }
 
 #notes-title {
@@ -66,8 +60,12 @@ td:first-of-type, td:first-of-type > div {
 
 .note-content p{
 	font-family: 'Arial', sans-serif;
-	font-size: 18px;
-	line-height: 130%;
+	/*font-size: 18px;*/
+	/*line-height: 130%;*/
+}
+
+.note-date{
+	font-size: .9em;
 }
 
 form a {

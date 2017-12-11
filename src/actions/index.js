@@ -27,7 +27,6 @@ export function createJob(values, callback) {
 
 export function fetchJob(id){
 	const request = axios.get(`http://localhost:3000/jobs/${id}`)
-	// console.log(request)
 
 	return {
 		type: FETCH_JOB,

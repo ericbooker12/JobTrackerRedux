@@ -6,18 +6,11 @@ export default function(state = {}, action){
 	// fetchJob action type
 	switch(action.type) {
 		case FETCH_JOB:
-			// const post = action.payload.data;
-			// const newState = { ...state };
-			// newState[post.id] = post;
-			// return newState;
 
 			return { ...state, [action.payload.data.id]: action.payload.data }
 
 		case FETCH_JOBS:
-			// const formatedJobData = _.mapKeys(action.payload.data, 'id');
-			// console.log('formatted_job_data', formatedJobData[6])
 			return _.mapKeys(action.payload.data, 'id');
-			// return _.mapKeys(action.payload.data, 'id');
 	}
 
 	return state;

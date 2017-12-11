@@ -25,7 +25,6 @@ class JobsNew extends Component {
 	}
 
 	onSubmit(values){
-		console.log(values)
 		this.props.createJob(values, () => {
 			// go back to root route
 			this.props.history.push('/');
