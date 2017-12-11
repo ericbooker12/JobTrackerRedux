@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchJob } from '../actions'
+import { fetchJob, deleteJob } from '../actions'
 import { Link } from 'react-router-dom';
 
 class JobShow extends Component {
@@ -13,7 +13,10 @@ class JobShow extends Component {
 	}
 
 	onDeleteClick(){
-		this.props.deleteJob();
+		const { id } = this.props.match.params;
+		this.props.deleteJob(id, () => {
+			this.props.history.push('/');
+		});
 	}
 
 	formatDate(d){
@@ -44,7 +47,7 @@ class JobShow extends Component {
 
 		return (
 			<div>
-				<Link to='/'>Back to Index</Link>
+				<Link to='/' className='btn btn-primary'>Back to Jobs List</Link>
 				<button
 					className='btn btn-danger pull-xs-right'
 					onClick={this.onDeleteClick.bind(this)}
@@ -61,7 +64,7 @@ class JobShow extends Component {
 				</div>
 
 				<div className="col-md-7 note-content text-box">
-					<h3 id="notes-title"><strong>Job Notes:</strong></h3>
+				<h3 id="notes-title"><strong>Job Notes:</strong></h3>
 
 					{job.notes.map((note, i) => {
 							// var date = new Date(note.updated_at)
@@ -93,7 +96,7 @@ function mapStateToProps({ jobData }, ownProps) {
 	return {job: jobData[ownProps.match.params.id]}
 }
 
-export default connect(mapStateToProps, { fetchJob })(JobShow);
+export default connect(mapStateToProps, { fetchJob, deleteJob })(JobShow);
 
 
 
