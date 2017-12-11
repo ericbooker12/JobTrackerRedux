@@ -9,6 +9,8 @@ class JobShow extends Component {
 		if (!this.props){
 			const { id } = this.props.match.params;
 			this.props.fetchJob(id)
+
+			// this.onDeleteClick = this.onDeleteClick.bind(this);
 		}
 	}
 

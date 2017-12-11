@@ -9,16 +9,16 @@ import { JobShow } from './job_show';
 
 class JobsIndex extends Component {
 	componentDidMount(){
-		// console.log(this.props)
 		this.props.fetchJobs();
 	}
 
-	onDeleteClick(){
-		console.log(this);
+	onDeleteClick(event){
+		const id = event.target.id;
+		console.log(`Job #${id} was deleted`)
 		// const { id } = this.props.match.params;
-		// this.props.deleteJob(id, () => {
-		// 	this.props.history.push('/');
-		// });
+		this.props.deleteJob(id, () => {
+			this.props.history.push('/');
+		});
 	}
 
 	renderJobs(){
@@ -37,6 +37,7 @@ class JobsIndex extends Component {
 					<td>
 						<button
 							className='btn-sm btn-primary'
+							id={job.id}
 							onClick={this.onDeleteClick.bind(this)}
 						>Delete
 						</button>
@@ -48,7 +49,6 @@ class JobsIndex extends Component {
 	};
 
 	render() {
-		console.log(this.props.jobs)
 		return (
 			<div className='col-md-8'>
 			<h3>Jobs</h3>
