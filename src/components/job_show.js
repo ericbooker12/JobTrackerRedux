@@ -12,16 +12,11 @@ class JobShow extends Component {
 		}
 	}
 
-	formatDate(d){
-		console.log(d)
-		// var date = new Date(date)
-		// console.log(date)
-		// var newDate =  `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-		// console.log(newDate)
+	onDeleteClick(){
+		this.props.deleteJob();
 	}
 
-	render(){
-		const { job } = this.props;
+	formatDate(d){
 		const months= {
 			0: 'January',
 			1: 'February',
@@ -36,6 +31,12 @@ class JobShow extends Component {
 			10: 'November',
 			11: 'December'
 		}
+		const date = new Date(d);
+		return ` ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} `;
+	}
+
+	render(){
+		const { job } = this.props;
 
 		if (!job) {
 			return <div>Loading...</div>
@@ -44,6 +45,12 @@ class JobShow extends Component {
 		return (
 			<div>
 				<Link to='/'>Back to Index</Link>
+				<button
+					className='btn btn-danger pull-xs-right'
+					onClick={this.onDeleteClick.bind(this)}
+				>
+					Delete Job
+				</button>
 				<div className="col-md-4 well job-info">
 					<h2>{job.title}</h2>
 					<h3>{job.company}</h3>
@@ -57,20 +64,16 @@ class JobShow extends Component {
 					<h3 id="notes-title"><strong>Job Notes:</strong></h3>
 
 					{job.notes.map((note, i) => {
-							var date = new Date(note.updated_at)
+							// var date = new Date(note.updated_at)
 
-							this.formatDate(date)
+							// this.formatDate(date)
 
 
 						return(
 							<div key={note.id} className='note thin'>
 								<p className='note-date'>On
 									<strong>
-										{`
-										${months[new Date(note.updated_at).getMonth()]}
-										${new Date(note.updated_at).getDate()},
-										${new Date(note.updated_at).getFullYear()}
-										`}
+										{this.formatDate(note.created_at)}
 									</strong>
 									you wrote: </p>
 
