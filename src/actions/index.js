@@ -5,7 +5,8 @@ export const CREATE_JOBS = 'create_jobs';
 export const FETCH_JOB = 'fetch_job';
 export const DELETE_POST = 'delete_post';
 
-const jobsURL = 'http://localhost:3000/jobs'
+// const jobsURL = 'http://localhost:3000/jobs'
+const jobsURL = 'https://ericsjobtrackerapi.herokuapp.com/jobs'
 
 export function fetchJobs(){
 	const request = axios.get(jobsURL);
@@ -27,7 +28,7 @@ export function createJob(values, callback) {
 };
 
 export function fetchJob(id){
-	const request = axios.get(`http://localhost:3000/jobs/${id}`)
+	const request = axios.get(`${jobsURL}/${id}`)
 
 	return {
 		type: FETCH_JOB,
@@ -36,7 +37,7 @@ export function fetchJob(id){
 };
 
 export function deleteJob(id, callback){
-	const request = axios.delete(`http://localhost:3000/jobs/${id}`)
+	const request = axios.delete(`${jobsURL}/${id}`)
 		.then(() => callback())
 
 	return {

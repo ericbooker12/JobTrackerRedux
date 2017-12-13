@@ -22,7 +22,7 @@ class JobsIndex extends Component {
 	}
 
 	renderJobs(){
-		let helper = new HelperFunctions('Hello Eric');
+		let helper = new HelperFunctions();
 
 		return _.map(this.props.jobs, job => {
 			return (
@@ -32,7 +32,7 @@ class JobsIndex extends Component {
 						<Link to={`/jobs/${job.id}`}>{job.title}</Link>
 					</td>
 					<td>{job.company}</td>
-					<td>{helper.formatDate(job.date_applied)}</td>
+					<td>{helper.formatDateWithMonth(job.date_applied)}</td>
 					<td>{job.notes.length}</td>
 					<td>
 						<button
@@ -46,38 +46,41 @@ class JobsIndex extends Component {
 				</tr>
 			)
 		});
+
 	};
 
 	render() {
-		return (
-			<div className='col-md-12'>
-				<div>
-					<h3>Jobs</h3>
-					<div className='list-group job-list'>
-						<table className='table table-hover'>
-							<thead>
-								<tr className='table-row'>
-									<th className="row-header"></th>
-									<th className="row-header">Job Title</th>
-									<th className="row-header">Company</th>
-									<th className="row-header">Date Applied</th>
-									<th className="row-header">No. of notes</th>
-								</tr>
-							</thead>
-							<tbody >
-								{this.renderJobs()}
-							</tbody>
-						</table>
-					</div>
-					<div className='text-xs-right'>
-						<Link className='btn btn-primary' to='/jobs/new'>
-								New Job
-						</Link>
+
+			return (
+				<div className='col-md-6'>
+					<div>
+						<h3>Jobs</h3>
+						<div className='list-group job-list'>
+							<table className='table table-hover'>
+								<thead>
+									<tr className='table-row'>
+										<th className="row-header"></th>
+										<th className="row-header">Job Title</th>
+										<th className="row-header">Company</th>
+										<th className="row-header">Date Applied</th>
+										<th className="row-header">No. of notes</th>
+									</tr>
+								</thead>
+								<tbody >
+									{this.renderJobs()}
+								</tbody>
+							</table>
+						</div>
+						<div className='text-xs-right'>
+							<Link className='btn btn-primary' to='/jobs/new'>
+									New Job
+							</Link>
+						</div>
 					</div>
 				</div>
-			</div>
-		)
-	}
+			)
+		}
+
 }
 
 function mapStateToProps(state) {

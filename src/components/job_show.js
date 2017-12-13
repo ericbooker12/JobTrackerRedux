@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchJob, deleteJob } from '../actions'
 import { Link } from 'react-router-dom';
+import HelperFunctions from './helper_functions';
 
 class JobShow extends Component {
+
+	constructor(props){
+		super(props)
+		this.onDeleteClick = this.onDeleteClick.bind(this);
+	}
 
 	componentDidMount(){
 		if (!this.props){
 			const { id } = this.props.match.params;
 			this.props.fetchJob(id)
 
-			// this.onDeleteClick = this.onDeleteClick.bind(this);
 		}
 	}
 
@@ -21,26 +26,8 @@ class JobShow extends Component {
 		});
 	}
 
-	formatDate(d){
-		const months= {
-			0: 'January',
-			1: 'February',
-			2: 'March',
-			3: 'April',
-			4: 'May',
-			5: 'June',
-			6: 'July',
-			7: 'August',
-			8: 'September',
-			9: 'October',
-			10: 'November',
-			11: 'December'
-		}
-		const date = new Date(d);
-		return ` ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} `;
-	}
-
 	render(){
+		let helper = new HelperFunctions();
 		const { job } = this.props;
 
 		if (!job) {
@@ -52,7 +39,7 @@ class JobShow extends Component {
 				<Link to='/' className='btn btn-primary'>Back to Jobs List</Link>
 				<button
 					className='btn btn-danger pull-xs-right'
-					onClick={this.onDeleteClick.bind(this)}
+					onClick={this.onDeleteClick}
 				>
 					Delete Job
 				</button>
@@ -69,19 +56,13 @@ class JobShow extends Component {
 				<h3 id="notes-title"><strong>Job Notes:</strong></h3>
 
 					{job.notes.map((note, i) => {
-							// var date = new Date(note.updated_at)
-
-							// this.formatDate(date)
-
-
 						return(
 							<div key={note.id} className='note thin'>
 								<p className='note-date'>On
 									<strong>
-										{this.formatDate(note.created_at)}
+										{helper.formatDateWithMonth(note.created_at)}
 									</strong>
 									you wrote: </p>
-
 								<p>{note.content}</p>
 								<hr id='end-of-note'/>
 							</div>

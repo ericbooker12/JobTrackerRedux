@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+
 import reducers from './reducers';
 import JobsIndex from './components/jobs_index';
 import JobsNew from './components/jobs_new';
@@ -17,8 +18,8 @@ ReactDOM.render(
 		<BrowserRouter>
 			<div>
 				<Switch>
-					<Route path='/jobs/:id' component={JobShow} />
 					<Route path='/jobs/new' component={JobsNew} />
+					<Route path='/jobs/:id' component={JobShow} />
 					<Route path='/' component={JobsIndex} />
 				</Switch>
 			</div>
