@@ -1,0 +1,46 @@
+.job-list {
+	margin-top: 40px;
+	margin-bottom: 400px;
+	border-radius: 4px 4px 4px 4px;
+	height: 550px;
+	overflow: scroll;
+	border: 1px solid black;
+}
+
+.job-title {
+	margin-top: 20px;
+}
+
+.job-list-item:hover {
+	cursor: default;
+	background-color: #eee;
+}
+
+.job-detail {
+	padding-top: 15px;
+}
+
+.job-info {
+	margin-top: 30px;
+}
+
+.job-table {
+	text-align: center;
+}
+
+.job-show {
+	border-radius: 4px 4px 4px 4px;
+	margin-top: 40px;
+	background-color: #eee;
+}
+
+.job-btn {
+	margin-top: 10px;
+	background: #DCDCDC;
+	box-shadow: 2px 2px 1px rgba(128, 128, 128, 1);
+}
+
+.job-btn:hover, .job-btn:focus {
+	background: #B0C4DD;
+	box-shadow: 4px 4px 2px rgba(128, 128, 128, 1);
+}

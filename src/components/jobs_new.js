@@ -8,7 +8,7 @@ class JobsNew extends Component {
 
 	renderField(field) {
 		const { meta } = field;
-		const className = `form-group ${meta.touched && meta.error ? 'has-danger' : ''}`
+		const className = `field form-group ${meta.touched && meta.error ? 'has-danger' : ''}`
 		return (
 			<div className={className}>
 				<label>{field.label}</label>
@@ -29,7 +29,6 @@ class JobsNew extends Component {
 			// go back to root route
 			this.props.history.push('/');
 		});
-
 	}
 
 	render() {
@@ -64,13 +63,13 @@ class JobsNew extends Component {
 				/>
 				<Field
 					label='Resume Sent:'
-					name='resume-sent'
+					name='resume_sent'
 					type='checkbox'
 					component={this.renderField}
 				/>
 				<Field
 					label='Cover letter sent:'
-					name='cover-letter-sent'
+					name='cover_letter_sent'
 					type='checkbox'
 					component={this.renderField}
 				/>

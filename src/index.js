@@ -5,7 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-
 import reducers from './reducers';
 import JobsIndex from './components/jobs_index';
 import JobsNew from './components/jobs_new';
@@ -25,4 +24,4 @@ ReactDOM.render(
 			</div>
 		</BrowserRouter>
 	</Provider>
-	, document.querySelector('.container'));
+	, document.querySelector('.main'));

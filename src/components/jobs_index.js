@@ -23,18 +23,25 @@ class JobsIndex extends Component {
 
 	renderJobs(){
 		let helper = new HelperFunctions();
-
+		let i = 1;
+		console.log(this.props.jobs)
 		return _.map(this.props.jobs, job => {
+
 			return (
-				<tr key={job.id} className='table-row job-list-item'>
-					<td>{job.id}</td>
-					<td>
+				<tr key={job.id} className='table-row job-list-item card'>
+					<td className="table-data">{i++}</td>
+					<td className="table-data">
 						<Link to={`/jobs/${job.id}`}>{job.title}</Link>
 					</td>
-					<td>{job.company}</td>
-					<td>{helper.formatDateWithMonth(job.date_applied)}</td>
-					<td>{job.notes.length}</td>
-					<td>
+					<td className="table-data">{job.company}</td>
+					<td className="table-data">{helper.formatDateWithMonth(job.date_applied)}</td>
+					<td className="table-data">
+						{job.cover_letter_sent ? 'yes' : 'no'}
+					</td>
+					<td className="table-data">
+						{job.resume_sent ? 'yes' : 'no'}
+					</td>
+					<td className="table-data">
 						<button
 							className='btn-sm btn-danger'
 							id={job.id}
@@ -52,18 +59,20 @@ class JobsIndex extends Component {
 	render() {
 
 			return (
-				<div className='col-md-6'>
+				<div className='col-md-12'>
 					<div>
-						<h3>Jobs</h3>
+						<h2 className='job-title'>Jobs</h2>
 						<div className='list-group job-list'>
-							<table className='table table-hover'>
+							<table className='table table-hover xtable-stripedx job-table'>
 								<thead>
-									<tr className='table-row'>
+									<tr className='table-row job-list-item'>
 										<th className="row-header"></th>
 										<th className="row-header">Job Title</th>
 										<th className="row-header">Company</th>
 										<th className="row-header">Date Applied</th>
-										<th className="row-header">No. of notes</th>
+										<th className="row-header">Cover Letter?</th>
+										<th className="row-header">Resume?</th>
+										<th className="row-header"></th>
 									</tr>
 								</thead>
 								<tbody >
@@ -71,16 +80,17 @@ class JobsIndex extends Component {
 								</tbody>
 							</table>
 						</div>
+
 						<div className='text-xs-right'>
-							<Link className='btn btn-primary' to='/jobs/new'>
+							<Link className='btn job-btn' to='/jobs/new'>
 									New Job
 							</Link>
 						</div>
+
 					</div>
 				</div>
 			)
 		}
-
 }
 
 function mapStateToProps(state) {

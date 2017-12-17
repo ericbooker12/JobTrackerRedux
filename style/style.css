@@ -11,19 +11,14 @@ svg {
 	height: 150px;
 }
 
-.job-list {
-	margin-top: 40px;
-	border-radius: 0 0px 0px 0;
-	height: 600px;
-	overflow: scroll;
-	border: 1px solid black;
+.main {
+	box-shadow: 8px 8px 5px $shadow-color;
+	/*background: url(../images/background_dark_stripes.png) #eee repeat 0px 0px;*/
+	/*background-color: rgba(235, 235, 235, 1);*/
+	/*padding: 20px 50px 20px 50px;*/
+	border-radius: 4px 4px 4px 4px;
+	margin-bottom: 100px;
 }
-
-.job-list-item:hover {
-	cursor: pointer;
-	background-color: black;
-}
-
 
 .note-content {
 	box-shadow: 1px 1px 2px #424B54;
@@ -35,15 +30,18 @@ svg {
 	margin-bottom: 20px;
 	height: 350px;
 	background: url(../images/vintage_paper.jpg) transparent  0px 0px;
-	border: 1px solid white;
+	border: 0px solid white;
+	width: 90%;
+	font-family: $josefin-slab;
+	margin-top: 30px;
+	width: 100%;
+	margin:25px;
+	padding:25px;
 }
+
 ::-webkit-scrollbar {
 	width: 0px;
 	background: transparent; /* make scrollbar transparent */
-}
-
-.job-detail {
-	padding-top: 15px;
 }
 
 #end-of-note {
@@ -54,7 +52,7 @@ svg {
 	margin-top: 0px;
 	padding-top: 0px;
 	margin-bottom: 5px;
-	padding-bottom: 20px;
+	margin-left: 0px;
 	text-decoration: underline;
 }
 
@@ -71,6 +69,27 @@ svg {
 form a {
 	margin-left: 5px;
 }
+
+.row-header {
+	background-color: rgba(157, 180, 192, 1);
+	text-align: center;
+}
+
+.note-content p{
+	/*font-family: 'Arial', sans-serif;*/
+	font-family: $josefin-slab;
+	font-size: 18px;
+	line-height: 130%;
+}
+
+p.thin {
+	line-height: 130%;
+	font-size: 12px;
+	font-weight: 100;
+}
+
+
+
 
 
 
