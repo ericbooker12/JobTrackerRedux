@@ -9,6 +9,8 @@ import reducers from './reducers';
 import JobsIndex from './components/jobs_index';
 import JobsNew from './components/jobs_new';
 import JobShow from './components/job_show';
+import JobDetail from './components/job_detail';
+import MainPage from './components/main_page';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -18,9 +20,10 @@ ReactDOM.render(
 			<div>
 				<Switch>
 					<Route path='/jobs/new' component={JobsNew} />
+					<Route path='/' component={MainPage} />
 					<Route path='/jobs/:id' component={JobShow} />
-					<Route path='/' component={JobsIndex} />
 				</Switch>
+
 			</div>
 		</BrowserRouter>
 	</Provider>

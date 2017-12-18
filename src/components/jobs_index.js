@@ -3,22 +3,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchJobs, deleteJob } from '../actions';
 import { Link } from 'react-router-dom';
-import { JobShow } from './job_show';
+import JobShow from './job_show';
+import JobDetail from './job_detail';
 import HelperFunctions from './helper_functions';
 
 class JobsIndex extends Component {
 	constructor(props){
 		super(props)
 
+		this.state = {
+			selectedJob: null
+		}
+
 	}
 
 	componentDidMount(){
 		this.props.fetchJobs();
+		// console.log('From job index', this.props)
+
+		this.setState({
+			selectedJob: 'job1'
+		})
+
+		console.log("State", this.state)
 	}
 
 	onDeleteClick(event){
 		const id = event.target.id;
 		this.props.deleteJob(id, () => {});
+	}
+
+	selectJob(event){
+		// const id = event.target.id
+		console.log(event.currentTarget.id)
 	}
 
 	renderJobs(){
@@ -28,29 +45,34 @@ class JobsIndex extends Component {
 		return _.map(this.props.jobs, job => {
 
 			return (
-				<tr key={job.id} className='table-row job-list-item card'>
-					<td className="table-data">{i++}</td>
-					<td className="table-data">
-						<Link to={`/jobs/${job.id}`}>{job.title}</Link>
-					</td>
-					<td className="table-data">{job.company}</td>
-					<td className="table-data">{helper.formatDateWithMonth(job.date_applied)}</td>
-					<td className="table-data">
-						{job.cover_letter_sent ? 'yes' : 'no'}
-					</td>
-					<td className="table-data">
-						{job.resume_sent ? 'yes' : 'no'}
-					</td>
-					<td className="table-data">
+				<li
+					key={job.id}
+					className='job-list-item card'
+					id={job.id}
+					onClick={this.selectJob.bind(this)}
+					>
+					{/*<div className="table-data">{i++}</div>*/}
+					<div className="job-title">
+						Title: <Link to={`/jobs/${job.id}`}> {job.title}</Link>
+					</div>
+					<div className="company" id={job.id}>Company: {job.company}</div>
+					<div className="date-applied">Date Applied: {helper.formatDateWithMonth(job.date_applied)}</div>
+					<div className="cover-letter-sent">
+						Cover Letter Sent: {job.cover_letter_sent ? 'Yes' : 'No'}
+					</div>
+					<div className="resume-sent">
+						Resume Sent: {job.resume_sent ? 'Yes' : 'No'}
+					</div>
+					<div className="buttons">
 						<button
-							className='btn-sm btn-danger'
+							className='delete-job-btn job-btn'
 							id={job.id}
 							onClick={this.onDeleteClick.bind(this)}
-						>X
+						>Delete Job
 						</button>
-					</td>
+					</div>
 
-				</tr>
+				</li>
 			)
 		});
 
@@ -59,36 +81,14 @@ class JobsIndex extends Component {
 	render() {
 
 			return (
-				<div className='col-md-12'>
-					<div>
-						<h2 className='job-title'>Jobs</h2>
-						<div className='list-group job-list'>
-							<table className='table table-hover xtable-stripedx job-table'>
-								<thead>
-									<tr className='table-row job-list-item'>
-										<th className="row-header"></th>
-										<th className="row-header">Job Title</th>
-										<th className="row-header">Company</th>
-										<th className="row-header">Date Applied</th>
-										<th className="row-header">Cover Letter?</th>
-										<th className="row-header">Resume?</th>
-										<th className="row-header"></th>
-									</tr>
-								</thead>
-								<tbody >
-									{this.renderJobs()}
-								</tbody>
-							</table>
-						</div>
-
-						<div className='text-xs-right'>
-							<Link className='btn job-btn' to='/jobs/new'>
-									New Job
-							</Link>
-						</div>
-
-					</div>
+				<div className='jobs-index'>
+					<ul
+						className='cards'
+						>
+						{this.renderJobs()}
+					</ul>
 				</div>
+
 			)
 		}
 }

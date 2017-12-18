@@ -7,13 +7,22 @@
 	border: 1px solid black;
 }
 
+.jobs-index {
+	/*margin-top: 40px;*/
+	/*margin-bottom: 400px;*/
+	border-radius: 4px 4px 4px 4px;
+	height: 500px;
+	overflow: scroll;
+	/*border: 1px solid black;*/
+}
+
 .job-title {
 	margin-top: 20px;
 }
 
 .job-list-item:hover {
 	cursor: default;
-	background-color: #eee;
+	/*background-color: #eee;*/
 }
 
 .job-detail {
