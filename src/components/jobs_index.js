@@ -17,15 +17,18 @@ class JobsIndex extends Component {
 
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		this.props.fetchJobs();
-		// console.log('From job index', this.props)
+		// console.log("State", this.state)
+	}
 
-		this.setState({
-			selectedJob: 'job1'
-		})
+	componentDidMount(){
+		console.log(this.props);
+		if (!this.props){
+			const { id } = this.props.match.params;
+			this.props.fetchJob(id)
 
-		console.log("State", this.state)
+		}
 	}
 
 	onDeleteClick(event){
@@ -34,8 +37,14 @@ class JobsIndex extends Component {
 	}
 
 	selectJob(event){
-		// const id = event.target.id
-		console.log(event.currentTarget.id)
+		const id = event.currentTarget.id
+		const job = this.props.jobs[id]
+
+		this.setState({
+			selectedJob: job
+		})
+
+		console.log("State", this.state)
 	}
 
 	renderJobs(){
@@ -81,12 +90,17 @@ class JobsIndex extends Component {
 	render() {
 
 			return (
-				<div className='jobs-index'>
-					<ul
-						className='cards'
-						>
-						{this.renderJobs()}
-					</ul>
+				<div className='site'>
+					<div className='jobs-index'>
+						<ul
+							className='cards'
+							>
+							{this.renderJobs()}
+						</ul>
+					</div>
+
+						<JobDetail job={this.state.selectedJob}/>
+
 				</div>
 
 			)

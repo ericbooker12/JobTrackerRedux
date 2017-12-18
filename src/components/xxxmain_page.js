@@ -8,13 +8,12 @@ import JobDetail from './job_detail';
 import JobsIndex from './jobs_index';
 import HelperFunctions from './helper_functions';
 
-class MainPage extends Component {
+class xxxMainPage extends Component {
 
 	render() {
 		return (
 			<div className='site'>
 				<JobsIndex />
-				<JobDetail />
 			</div>
 		)
 	}

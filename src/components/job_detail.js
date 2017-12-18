@@ -5,13 +5,14 @@ const JobDetail = (props) => {
 	let notes = null;
 	let dateApplied = Date.now();
 
-	// if(!props.job) {
-	// 	return <div>...Loading</div>
-	// } else {
-	// 		notes = props.job.notes;
-	// 		job = props.job;
-	// 		dateApplied = new Date(props.job.date_applied)
-	// }
+	if(!props.job) {
+		return <div>...Loading</div>
+	} else {
+		console.log('From JobDetail', props)
+			notes = props.job.notes;
+			job = props.job;
+			dateApplied = new Date(props.job.date_applied)
+	}
 
 	function coverLetter(job){
 		if(job.cover_letter_sent){
@@ -45,23 +46,28 @@ const JobDetail = (props) => {
 		return wordsUpper.join(' ');
 	};
 
-	console.log(dateApplied)
-
 	return(
 		<div className='job-detail' >
-			<p>Job Title: <strong>Job</strong></p>
-			<p>Company: <strong>Company</strong></p>
-			<p>
-				You applied for this job on
-				<strong> Date</strong>
+			<p>Job Title: <strong>{upper(job.title)}</strong></p>
+			<p>Company: <strong>{job.company.toUpperCase()}</strong></p>
+			<p>You applied for this job on
+				<strong> {dateApplied.getMonth() + 1}/{dateApplied.getDate()}/{dateApplied.getFullYear()}</strong>
 			</p>
-			<p>Cover Letter</p>
-			<p>Resume</p>
+			<p>{coverLetter(job)}</p>
+			<p>{resume(job)}</p>
 
 			<div className='note-content'>
 
 				<h3 id="notes-title"><strong>Job Notes:</strong></h3>
 
+				{notes.map(function(note, i){
+					return (
+						<div key={note.id} className='note'>
+							<p>{note.content}</p>
+							<hr id='end-of-note'/>
+						</div>
+					)
+				})}
 			</div>
 		</div>
 	)

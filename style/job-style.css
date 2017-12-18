@@ -11,7 +11,7 @@
 	/*margin-top: 40px;*/
 	/*margin-bottom: 400px;*/
 	border-radius: 4px 4px 4px 4px;
-	height: 500px;
+	/*height: 500px;*/
 	overflow: scroll;
 	/*border: 1px solid black;*/
 }
@@ -26,7 +26,11 @@
 }
 
 .job-detail {
+	margin-left: 10px;
 	padding-top: 15px;
+	padding-left: 15px;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
 }
 
 .job-info {
